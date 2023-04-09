@@ -4,7 +4,8 @@ import { sanitizePath } from "./controller/sanitize.js";
 import { updateLocation } from "./services/updateLocation.js";
 
 const pathToFind = "/home/fabien";
-const newPath = "c:/fabien";
+const newPath = "C:\Users\fabgr\Music\";
+const windowsMigration=true;
 const tableName = "track_locations";
 
 const mixxxDB = await useMixxxDB("./mixxxdb.sqlite");
@@ -12,7 +13,7 @@ const mixxxDB = await useMixxxDB("./mixxxdb.sqlite");
 const locations = await getLocations(mixxxDB, pathToFind, tableName);
 
 locations.forEach((locationRow) => {
-  const locationWithNewUrl = updateLocation(locationRow, pathToFind, newPath);
+  const locationWithNewUrl = updateLocation(locationRow, pathToFind, newPath,windowsMigration);
 
   sanitizePath({
     locationRow: locationWithNewUrl,

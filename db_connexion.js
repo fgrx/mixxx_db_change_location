@@ -1,5 +1,11 @@
+import { open } from "sqlite";
 import sqlite3 from "sqlite3";
 
-const mixxxDB = new sqlite3.Database("./mixxxdb.sqlite");
+function useMixxxDB(filename) {
+  return open({
+    filename,
+    driver: sqlite3.Database,
+  });
+}
 
-export default mixxxDB;
+export { useMixxxDB };

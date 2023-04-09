@@ -1,11 +1,11 @@
 import { updateInDB } from "../services/dbManager.js";
-import { renameFileAndFolder } from "../services/renamePath.js";
+import { renameFileAndFolder } from "../services/changeFilePath.js";
 import { isUpdated, sanitizeObject } from "../services/sanitize.js";
 
 const sanitizePath = async (params) => {
-  const { locationRow, tableName, mixxxDB } = params;
+  const { locationRow, tableName, mixxxDB, pathToFind, newPath } = params;
 
-  const sanitizedObject = sanitizeObject(locationRow);
+  const sanitizedObject = sanitizeObject(locationRow, pathToFind, newPath);
 
   if (isUpdated(locationRow, sanitizedObject)) {
     const resultRename = renameFileAndFolder(locationRow);

@@ -21,6 +21,11 @@ async function getLocationById(mixxxDB, id, tableName) {
   }
 }
 
+async function clearTrackAnalysis(mixxxDB,tableName){
+  const req=`delete from ${tableName}`
+  await mixxxDB.run(req);
+}
+
 async function updateInDB(mixxxDB, tableName, sanitizedObject) {
   const {
     id,
@@ -33,13 +38,10 @@ async function updateInDB(mixxxDB, tableName, sanitizedObject) {
 
   try {
     const result = await mixxxDB.run(updateRequest);
-    if (result?.changes) {
-      console.log("Morceau mis à jour");
-    }
     return true;
   } catch (error) {
     return false;
   }
 }
 
-export { getLocations, updateInDB, getLocationById };
+export { getLocations, updateInDB, getLocationById,clearTrackAnalysis };
